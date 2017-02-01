@@ -85,12 +85,12 @@ html(lang='en', prefix='og: http://ogp.me/ns#', itemscope, itemtype='http://sche
         script(src=bootstrap.javascript, integrity=bootstrap.javascriptSri,
             crossorigin='anonymous')
 
-        script(nonce=nonce)
-            include /assets/js/clipboard.min.js
+        script(src=helpers.buster('/assets/js/clipboard.min.js'),
+            integrity=generateSRI('/assets/js/clipboard.min.js'),
+            crossorigin='anonymous')
 
-            if process.env.NODE_ENV === 'production'
-                include:uglify-js /assets/js/main.js
-            else
-                include /assets/js/main.js
+        script(src=helpers.buster(config.javascripts.main.uri),
+            integrity=generateSRI(config.javascripts.main.uri),
+            crossorigin='anonymous')
 
 //- vim: ft=pug sw=4 sts=4 et:
